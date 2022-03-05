@@ -1,0 +1,9 @@
+.container-footer {
+    display: flex;
+    flex-direction: row-reverse;
+    background-color: #673AB7;
+    padding: 20px 80px;
+}
+.copiryght {    
+    color: #fff;
+}
