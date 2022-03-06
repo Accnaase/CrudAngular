@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Novo material</h1>
+
+<form #f="ngForm" mat-dialog-content>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Nome</mat-label>
+    <input type="text" class="form-control" name="nome" required matInput [(ngModel)]="data.nome" #nome="ngModel" >
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Quantidade</mat-label>
+    <input type="number" class="form-control" name="qtd" required matInput [(ngModel)]="data.qtd" #qtd="ngModel">
+  </mat-form-field>
+  
+</form>  
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>
+    Adicionar material
+  </button>
+</div>
+<!-- *ngIf="nome.valid && qtd.valid" -->

@@ -1,0 +1,16 @@
+table {
+    width: 85%;
+    margin: 0px auto 30px;
+}
+.container-input {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+}
+.input-dialog {
+    padding: 8px;
+    width: 25%;
+    font-size: 1.25rem;
+    background-color: #4527A0;
+    color: #fff;
+}

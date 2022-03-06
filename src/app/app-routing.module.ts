@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { TabelaComponent } from './views/tabela/tabela.component';
+import { TabelaComponent } from './tabela/tabela.component';
 
 const routes: Routes = [
   { path: '', component: TabelaComponent },
