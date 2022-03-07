@@ -17,8 +17,8 @@
 <div mat-dialog-actions>
   <button mat-button (click)="onCancel()">Cancelar</button>
   
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>
-    Adicionar material
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial
+    *ngIf="nome.valid && qtd.valid && qtd.value > 0">
+    Adicionar 
   </button>
 </div>
-<!-- *ngIf="nome.valid && qtd.valid" -->

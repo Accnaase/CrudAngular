@@ -4,7 +4,13 @@
         <button mat-raised-button (click)="openDialog(null)" class="input-dialog">Adicionar material</button>
     </div>
     
-    <table mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
+    <div class="form-invalid-msg" *ngIf="dataSource.length == 0">
+        <span class="msg-insira">
+            Lista vázia, adicione novos materiais 
+        </span>
+    </div>
+
+    <table mat-table #table [dataSource]="dataSource" class="mat-elevation-z8 tabela" *ngIf="dataSource.length > 0">
         <ng-container matColumnDef="nome">
           <th mat-header-cell *matHeaderCellDef> Nome </th>
           <td mat-cell *matCellDef="let element"> {{ element.nome }} </td>

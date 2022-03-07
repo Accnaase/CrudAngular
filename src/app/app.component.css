@@ -1,9 +1,16 @@
+footer {
+    text-align: end;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+}
+
 .container-footer {
-    display: flex;
-    flex-direction: row-reverse;
     background-color: #673AB7;
     padding: 20px 80px;
 }
 .copiryght {    
     color: #fff;
+    font-size: 1.125rem;
 }

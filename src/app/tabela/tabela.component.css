@@ -14,3 +14,17 @@ table {
     background-color: #4527A0;
     color: #fff;
 }
+.form-invalid-msg{
+    margin: 30px 0 0 0;
+    text-align: center;
+}
+
+.msg-insira {
+    font-size: 1.5rem;
+    color: #4527A0;
+    font-weight: bold;
+}
+
+.tabela {
+    margin-bottom: 100px;
+}

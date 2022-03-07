@@ -9,16 +9,7 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { nome: 'Hydrogen', qtd: 1.0079 },
-  { nome: 'Helium', qtd: 4.0026 },
-  { nome: 'Lithium', qtd: 6.941 },
-  { nome: 'Beryllium', qtd: 9.0122 },
-  { nome: 'Boron', qtd: 10.811 },
-  { nome: 'Carbon', qtd: 12.0107 },
-  { nome: 'Nitrogen', qtd: 14.0067 },
-  { nome: 'Oxygen', qtd: 15.9994 },
-  { nome: 'Fluorine', qtd: 18.9984 },
-  { nome: 'Neon', qtd: 20.1797 } 
+
 ];
 
 @Component({
