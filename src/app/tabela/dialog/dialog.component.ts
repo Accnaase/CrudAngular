@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PeriodicElement } from 'src/app/tabela/tabela.component';
 
 @Component({
@@ -7,8 +7,8 @@ import { PeriodicElement } from 'src/app/tabela/tabela.component';
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.css']
 })
-export class DialogComponent implements OnInit{  
-  
+export class DialogComponent implements OnInit {
+
   element!: PeriodicElement;
   dialogEdit!: boolean;
 
@@ -19,7 +19,7 @@ export class DialogComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
-    this.data.nome == "" ? this.dialogEdit == true : this.dialogEdit == false;
+      this.dialogEdit = this.data.nome == "";
   }
 
   onCancel(): void {

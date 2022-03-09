@@ -54,7 +54,6 @@ export class TabelaComponent implements OnInit {
   }
 
   openDialogEdit(element: PeriodicElement | null, index: number): void {
-    alert(index)
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '250px',
       data: element === null ? {
@@ -72,9 +71,8 @@ export class TabelaComponent implements OnInit {
           this.dataSource[result.i -1] = result;
           this.table?.renderRows();
         }   else {
-            // this.dataSource.map(p => p.qtd).includes(result.position)
             this.dataSource.splice(index, 1, result)
-            this.table?.renderRows();
+            this.table?.renderRows(); 
           }
       }
     });

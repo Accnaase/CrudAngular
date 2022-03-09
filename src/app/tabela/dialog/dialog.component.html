@@ -1,28 +1,29 @@
-<h1 *ngIf="!dialogEdit"mat-dialog-title>Novo material</h1>
-<h1 *ngIf="dialogEdit"mat-dialog-title>Editar material</h1>
+<h1 *ngIf="dialogEdit" mat-dialog-title>Novo material</h1>
+<h1 *ngIf="!dialogEdit" mat-dialog-title>Editar material</h1>
 <form #f="ngForm" mat-dialog-content>
 
   <mat-form-field appearance="fill">
     <mat-label>Nome</mat-label>
-    <input type="text" class="form-control" name="nome" required matInput [(ngModel)]="data.nome" #nome="ngModel" >
+    <input type="text" class="form-control" name="nome" required matInput [(ngModel)]="data.nome" #nome="ngModel">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Quantidade</mat-label>
     <input type="number" class="form-control" name="qtd" required matInput [(ngModel)]="data.qtd" #qtd="ngModel">
   </mat-form-field>
-  
-</form>  
+
+</form>
 
 <div mat-dialog-actions>
   <button mat-button (click)="onCancel()">Cancelar</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial
-    *ngIf="!dialogEdit && nome.valid && qtd.valid && qtd.value > 0">
-    Adicionar 
-  </button> 
 
   <button mat-button [mat-dialog-close]="data" cdkFocusInitial
     *ngIf="dialogEdit && nome.valid && qtd.valid && qtd.value > 0">
+    Adicionar
+  </button>
+
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial
+    *ngIf="!dialogEdit && nome.valid && qtd.valid && qtd.value > 0">
     Editar
   </button>
 
