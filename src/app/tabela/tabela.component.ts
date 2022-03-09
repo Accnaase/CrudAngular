@@ -33,18 +33,34 @@ export class TabelaComponent implements OnInit {
       data: element === null ? {
         nome: "",
         qtd: null
-      } : element
+      } : {
+        nome: element.nome,
+        qtd: element.qtd
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if(result !== undefined) {
-        this.dataSource.push(result);
-        this.table?.renderRows();
+        if(this.dataSource.map(p => p.qtd).includes(result.position)) {
+          this.dataSource[result.qtd -1] = result;
+          this.table?.renderRows();
+        }   else {
+            this.dataSource.push(result);
+            this.table?.renderRows();
+          }
       }
     });
   }
 
   ngOnInit(): void {
+  }
+
+  deletarElemento(nome: string):void {
+      this.dataSource = this.dataSource.filter(p => p.nome !== nome);
+  }
+
+  editarElemento(element: PeriodicElement):void {
+    this.openDialog(element); 
   }
 
 }
