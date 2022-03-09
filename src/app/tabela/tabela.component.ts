@@ -5,7 +5,7 @@ import { DialogComponent } from './dialog/dialog.component';
 
 export interface PeriodicElement {
   nome: string;
-  qtd: number;  
+  qtd: number; 
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
@@ -42,10 +42,38 @@ export class TabelaComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if(result !== undefined) {
         if(this.dataSource.map(p => p.qtd).includes(result.position)) {
-          this.dataSource[result.qtd -1] = result;
+          this.dataSource[result.i] = result;
           this.table?.renderRows();
         }   else {
             this.dataSource.push(result);
+            localStorage.setItem("dataSource", JSON.stringify(this.dataSource));
+            this.table?.renderRows();
+          }
+      }
+    });
+  }
+
+  openDialogEdit(element: PeriodicElement | null, index: number): void {
+    alert(index)
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '250px',
+      data: element === null ? {
+        nome: "",
+        qtd: null
+      } : {
+        nome: element.nome,
+        qtd: element.qtd
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result !== undefined) {
+        if(this.dataSource.map(p => p.qtd).includes(result.position)) {
+          this.dataSource[result.i -1] = result;
+          this.table?.renderRows();
+        }   else {
+            // this.dataSource.map(p => p.qtd).includes(result.position)
+            this.dataSource.splice(index, 1, result)
             this.table?.renderRows();
           }
       }
@@ -53,14 +81,21 @@ export class TabelaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    let ds = localStorage.getItem("dataSource");
+    if(ds !== null) {
+      this.dataSource = JSON.parse(ds);
+    }
   }
 
-  deletarElemento(nome: string):void {
-      this.dataSource = this.dataSource.filter(p => p.nome !== nome);
+  deletarElemento(index: number):void {
+      this.dataSource.splice(index, 1)
+      this.table?.renderRows();    
+      // localStorage.setItem("dataSource", JSON.stringify(this.dataSource));
+      // Apagar permanentemente do localStorage
   }
 
-  editarElemento(element: PeriodicElement):void {
-    this.openDialog(element); 
+  editarElemento(element: PeriodicElement, index: number):void {
+    this.openDialogEdit(element, index); 
   }
 
 }
