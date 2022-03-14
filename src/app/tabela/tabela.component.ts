@@ -1,16 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
+import { DataService } from '../shared/data-service.service';
 import { DialogComponent } from './dialog/dialog.component';
 
 export interface PeriodicElement {
   nome: string;
   qtd: number; 
+  preco: number;
+  total: number;
+  checkbox: boolean
 }
-
-const ELEMENT_DATA: PeriodicElement[] = [
-
-];
 
 @Component({
   selector: 'app-tabela',
@@ -23,9 +23,11 @@ export class TabelaComponent implements OnInit {
   table: MatTable<any> | undefined;
 
   displayedColumns: string[] = ['nome', 'qtd', 'actions'];
-  dataSource = ELEMENT_DATA;
    
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    public dataSource: DataService
+  ) { }
 
   openDialog(element: PeriodicElement | null): void {
     const dialogRef = this.dialog.open(DialogComponent, {
@@ -41,12 +43,12 @@ export class TabelaComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result !== undefined) {
-        if(this.dataSource.map(p => p.qtd).includes(result.position)) {
-          this.dataSource[result.i] = result;
+        if(this.dataSource.ELEMENT_DATA.map((p: { qtd: number; }) => p.qtd).includes(result.position)) {
+          this.dataSource.ELEMENT_DATA[result.i] = result;
           this.table?.renderRows();
         }   else {
-            this.dataSource.push(result);
-            localStorage.setItem("dataSource", JSON.stringify(this.dataSource));
+            this.dataSource.ELEMENT_DATA.push(result);
+            localStorage.setItem("dataSource", JSON.stringify(this.dataSource.ELEMENT_DATA));
             this.table?.renderRows();
           }
       }
@@ -67,11 +69,11 @@ export class TabelaComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result !== undefined) {
-        if(this.dataSource.map(p => p.qtd).includes(result.position)) {
-          this.dataSource[result.i -1] = result;
+        if(this.dataSource.ELEMENT_DATA.map((p: { qtd: any; }) => p.qtd).includes(result.position)) {
+          this.dataSource.ELEMENT_DATA[result.i -1] = result;
           this.table?.renderRows();
         }   else {
-            this.dataSource.splice(index, 1, result)
+            this.dataSource.ELEMENT_DATA.splice(index, 1, result)
             this.table?.renderRows(); 
           }
       }
@@ -81,12 +83,12 @@ export class TabelaComponent implements OnInit {
   ngOnInit(): void {
     let ds = localStorage.getItem("dataSource");
     if(ds !== null) {
-      this.dataSource = JSON.parse(ds);
+      this.dataSource.ELEMENT_DATA = JSON.parse(ds);
     }
   }
 
   deletarElemento(index: number):void {
-      this.dataSource.splice(index, 1)
+      this.dataSource.ELEMENT_DATA.splice(index, 1)
       this.table?.renderRows();    
       // localStorage.setItem("dataSource", JSON.stringify(this.dataSource));
       // Apagar permanentemente do localStorage

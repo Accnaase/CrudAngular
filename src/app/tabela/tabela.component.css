@@ -28,3 +28,12 @@ table {
 .tabela {
     margin-bottom: 35px;
 }
+
+.container-btn {
+    text-align: end;
+}
+
+.container-btn > .btn {
+    font-size: 1.125rem;
+    padding: 0.8rem;
+}

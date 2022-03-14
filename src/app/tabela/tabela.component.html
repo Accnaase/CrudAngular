@@ -2,12 +2,12 @@
     <div class="container-input">
         <button mat-raised-button (click)="openDialog(null)" class="input-dialog">Adicionar material</button>
     </div>
-    <div class="form-invalid-msg" *ngIf="dataSource.length == 0">
+    <div class="form-invalid-msg" *ngIf="dataSource.ELEMENT_DATA.length <= 0">
         <span class="msg-insira">
             Lista vázia, adicione novos materiais 
         </span>
     </div>
-    <table mat-table #table [dataSource]="dataSource" class="mat-elevation-z8 tabela" *ngIf="dataSource.length > 0">
+    <table mat-table #table [dataSource]="dataSource.ELEMENT_DATA" class="mat-elevation-z8 tabela" *ngIf="dataSource.ELEMENT_DATA.length > 0">
         <ng-container matColumnDef="nome">
           <th mat-header-cell *matHeaderCellDef> Nome </th>
           <td mat-cell *matCellDef="let element; let i = index"> {{ element.nome }} </td>
@@ -30,7 +30,8 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>    
-
-    <button class="btn btn-primary" routerLink="/lista"> Ir para a próxima página </button>
+    <div class="container-btn" *ngIf="dataSource.ELEMENT_DATA.length > 0">
+        <button class="btn btn-primary" color="primary" routerLink="/lista"> Próxima página </button>
+    </div>
 
 </div>

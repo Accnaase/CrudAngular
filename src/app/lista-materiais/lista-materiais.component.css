@@ -1,0 +1,19 @@
+table {
+    width: 85%;
+    margin: 50px auto 30px;
+}
+.container-calculo {
+    text-align: center;
+}
+.btn-calculo {
+    background-color: #4527A0;
+    padding: 10px;
+    margin: 20px;
+}
+.container-calculo.total {
+    margin:20px;
+}
+.container-progressbar {
+    text-align: center;
+    margin: 15px auto;
+}

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTable } from '@angular/material/table';
+import { filter } from 'rxjs';
+import { DataService } from '../shared/data-service.service';
 
 @Component({
   selector: 'app-lista-materiais',
@@ -6,10 +9,40 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lista-materiais.component.css']
 })
 export class ListaMateriaisComponent implements OnInit {
+  @ViewChild(MatTable)
+  table: MatTable<any> | undefined;
+  total: number = 0;  
+  totalPercento: number | undefined;
+  totalMarcados: number | undefined;
+  displayedColumns: string[] = ['checkbox', 'nome', 'qtd', 'preco', 'total'];
 
-  constructor() { }
+  constructor(public dataSource: DataService) { }
+  
+  calcular():number {
+    this.total = 0;
+    this.dataSource.ELEMENT_DATA.forEach(element => {
+      if(element.checkbox) {
+        element.total = element.preco * element.qtd || 0
+        this.total = this.total + element.total
+      }
+
+    });
+    return this.total
+  }
+
+  calculaBarra():number {
+    this.totalPercento = this.dataSource.ELEMENT_DATA.length
+    this.totalMarcados = this.dataSource.ELEMENT_DATA.filter(element => {
+      return element.checkbox
+    }).length
+    return ((this.totalMarcados / this.totalPercento) * 100)
+  }
 
   ngOnInit(): void {
+      let ds = localStorage.getItem("dataSource");
+      if(ds !== null) {
+        this.dataSource.ELEMENT_DATA = JSON.parse(ds);
+      } 
   }
 
 }
