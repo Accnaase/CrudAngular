@@ -36,4 +36,13 @@ table {
 .container-btn > .btn {
     font-size: 1.125rem;
     padding: 0.8rem;
+    background-color: #4527A0;
+    color: #FFF;
+}
+
+@media screen and (max-width: 721px) {
+    .input-dialog{
+        width: 70%;
+    }
+    
 }

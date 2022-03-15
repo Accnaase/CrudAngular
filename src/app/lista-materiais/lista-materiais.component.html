@@ -17,19 +17,19 @@
     </ng-container>
 
     <ng-container matColumnDef="qtd">
-      <th mat-header-cell *matHeaderCellDef> Quantidade </th>
+      <th mat-header-cell *matHeaderCellDef> Qtd </th>
       <td mat-cell *matCellDef="let element; let i = index"> {{ element.qtd }} </td>
     </ng-container>
 
     <ng-container matColumnDef="preco">
       <th mat-header-cell *matHeaderCellDef> Preço </th>
       <td mat-cell *matCellDef="let element; let i = index">
-        <input type="number" [(ngModel)]="element.preco">
+        <input type="number" [(ngModel)]="element.preco" class="input-valor">
       </td>
     </ng-container>
 
     <ng-container matColumnDef="total">
-      <th mat-header-cell *matHeaderCellDef> Total do Material </th>
+      <th mat-header-cell *matHeaderCellDef> Total material </th>
       <td mat-cell *matCellDef="let element; let i = index">
         <p> {{ element.preco * element.qtd || 0}} </p>
       </td>
@@ -49,6 +49,7 @@
 
 </div>
 
-<div class="container-calculo">
-  <span clas="total">Total: {{ calcular() }}</span>
+<div class="container container-calculo">
+  <h2 clas="total">Total: {{ calcular() | currency:"BRL"}}</h2>
+  <h2 clas="total-comprados">Total comprados: {{ calcularComprados() | currency:"BRL"}}</h2>
 </div>
