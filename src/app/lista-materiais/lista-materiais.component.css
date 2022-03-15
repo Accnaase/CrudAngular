@@ -2,8 +2,10 @@ table {
     width: 85%;
     margin: 50px auto 30px;
 }
-.container-calculo {
-    text-align: center;
+.container-calculo{
+    text-align: start;
+    padding-bottom: 50px;
+    padding-top: 20px;
 }
 .btn-calculo {
     background-color: #4527A0;

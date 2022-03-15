@@ -31,6 +31,7 @@ table {
 
 .container-btn {
     text-align: end;
+    padding-bottom: 50px;
 }
 
 .container-btn > .btn {

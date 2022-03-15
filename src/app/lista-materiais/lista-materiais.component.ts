@@ -11,7 +11,11 @@ import { DataService } from '../shared/data-service.service';
 export class ListaMateriaisComponent implements OnInit {
   @ViewChild(MatTable)
   table: MatTable<any> | undefined;
+  
   total: number = 0;  
+  
+  totalComprados: number  = 0;
+
   totalPercento: number | undefined;
   totalMarcados: number | undefined;
   displayedColumns: string[] = ['checkbox', 'nome', 'qtd', 'preco', 'total'];
@@ -19,6 +23,16 @@ export class ListaMateriaisComponent implements OnInit {
   constructor(public dataSource: DataService) { }
   
   calcular():number {
+    this.totalComprados = 0;
+    this.dataSource.ELEMENT_DATA.forEach(element => {
+        element.total = element.preco * element.qtd || 0
+        this.totalComprados = this.totalComprados + element.total
+
+    });
+    return this.totalComprados
+  }
+
+  calcularComprados():number {
     this.total = 0;
     this.dataSource.ELEMENT_DATA.forEach(element => {
       if(element.checkbox) {
@@ -31,6 +45,7 @@ export class ListaMateriaisComponent implements OnInit {
   }
 
   calculaBarra():number {
+
     this.totalPercento = this.dataSource.ELEMENT_DATA.length
     this.totalMarcados = this.dataSource.ELEMENT_DATA.filter(element => {
       return element.checkbox
