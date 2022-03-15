@@ -14,6 +14,10 @@ table {
     margin: 20px;
 }
 
+.container-progressbar {
+    text-align: center;
+}
+
 @media screen and (max-width: 721px) {
     .input-valor {
         width: 20px;

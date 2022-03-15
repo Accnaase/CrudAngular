@@ -26,17 +26,16 @@ export class ListaMateriaisComponent implements OnInit {
   constructor(public dataSource: DataService) { }
 
   calcular():number {
-    this.totalComprados = 0;
+    this.total = 0;
     this.dataSource.ELEMENT_DATA.forEach(element => {
         element.total = element.preco * element.qtd || 0
-        this.totalComprados = this.totalComprados + element.total
-
+        this.total = this.total + element.total
     });
-    return this.totalComprados
+    return this.total
   }
 
   calcularComprados():number {
-    this.total = 0;
+    this.totalComprados = 0;
     this.dataSource.ELEMENT_DATA.forEach(element => {
       if (element.checkbox) {
         element.total = element.preco * element.qtd || 0
